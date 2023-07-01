@@ -1,13 +1,21 @@
-import loginPage from "../support/pages/LoginPage";
-import {alert} from '../support/helper'
+import { faker } from '@faker-js/faker'
 import user from '../fixtures/user.json'
+import {register, login} from '../support/helper'
 
+user.email = faker.internet.email();
+user.password = faker.internet.password();
+user.answer = faker.person.firstName('female');
+
+
+
+
+it('Register user', () => {
+  register(user)
+  
+
+})
 
 it('Authorization', () => {
-    cy.log('Authorize user');
-    loginPage.visit();
-    alert();
-      cy.get('#email').type(user.email);
-      cy.get('#password').type(user.password);
-      cy.get('button[type="submit"]').contains('Log in').click();
-  })
+  login(user)
+  cy.get('.fa-layers-counter.fa-layers-top-right.fa-3x').should('exist')
+})
