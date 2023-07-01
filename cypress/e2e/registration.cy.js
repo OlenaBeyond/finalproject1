@@ -1,5 +1,3 @@
-
-
 import { faker } from '@faker-js/faker'
 import user from '../fixtures/user.json'
 import {register, login} from '../support/helper'
